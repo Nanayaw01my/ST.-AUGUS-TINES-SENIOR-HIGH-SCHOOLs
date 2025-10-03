@@ -1,0 +1,946 @@
+ 
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Augustine Senior High School - Academic Programs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-green: #2E8B57;
+            --dark-green: #1d5c3a;
+            --light-green: #e0f2e9;
+            --primary-yellow: #FFD700;
+            --light-yellow: #fff9e6;
+            --dark-gray: #333;
+            --light-gray: #f4f4f4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: var(--dark-green);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Academic Programs Section Styles */
+        .academic-programs {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .school-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .school-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .school-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #2e7d32;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.2);
+        }
+
+        .card-header {
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            min-height: 100px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+        }
+
+        .card-header i {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            opacity: 0.9;
+            color: #ffeb3b;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .hod-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            background: #f9fbe7;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffeb3b;
+        }
+
+        .hod-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid #ffeb3b;
+            flex-shrink: 0;
+        }
+
+        .hod-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hod-details h4 {
+            color: #2e7d32;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .hod-title {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .hod-contact {
+            color: #2e7d32;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .hod-contact i {
+            margin-right: 5px;
+            color: #ffeb3b;
+        }
+
+        .program-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .program-features li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+        .program-features li:last-child {
+            border-bottom: none;
+        }
+
+        .program-features li i {
+            color: #2e7d32;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            background: #e8f5e9;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .view-details {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #2e7d32, #4caf50);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46, 125, 50, 0.4);
+        }
+
+        .btn i {
+            margin-left: 5px;
+        }
+
+        /* School badge styling */
+        .school-badge {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2e7d32, #ffeb3b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 4px solid white;
+        }
+
+        /* Footer styling */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #2e7d32;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .programs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .school-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .hod-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hod-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            nav.show {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://myriaddigitalsolutions.com/seniorhighub/Misc/Western/St%20Augustine%20Bogoso.png" alt="School Logo">
+                <h1>St. Augustine Senior High School</h1>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="A.HTML" class="active">Home</a></li>
+                    <li><a href="ABOUT.HTML">About Us</a></li>
+                    
+                    <li><a href="ACADEMICS.HTML">Academics</a></li>
+                    <li><a href="CAMPUS LIFE.HTML">Campus Life</a></li>
+                    <li><a href="CONTACT.HTML">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - St. Augustine Senior High School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #2d5016; /* Dark green */
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #f1c40f; /* Yellow */
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #5a6c5d; /* Muted green */
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Container */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #27ae60; /* Green */
+        }
+
+        .info-title {
+            font-size: 1.5rem;
+            color: #2d5016; /* Dark green */
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1c40f; /* Yellow */
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: #f1c40f; /* Yellow */
+            color: #2d5016; /* Dark green */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            color: #2d5016; /* Dark green */
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: #5a6c5d; /* Muted green */
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #27ae60; /* Green */
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: #f1c40f; /* Yellow */
+            color: #2d5016; /* Dark green */
+            transform: translateY(-3px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #f1c40f; /* Yellow */
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            color: #2d5016; /* Dark green */
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #27ae60; /* Green */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d5016; /* Dark green */
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #27ae60; /* Green */
+            box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #f1c40f; /* Yellow */
+            color: #2d5016; /* Dark green */
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #27ae60; /* Green */
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-title {
+            background-color: #2d5016; /* Dark green */
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3rem;
+        }
+
+        .map-container {
+            height: 400px;
+            position: relative;
+        }
+
+        .map-embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-fallback {
+            display: none;
+            height: 100%;
+            background: #e8f5e9; /* Light green */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #5a6c5d; /* Muted green */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .map-fallback i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #27ae60; /* Green */
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 40px;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #2d5016; /* Dark green */
+            margin-bottom: 25px;
+        }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .faq-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #f1c40f; /* Yellow */
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            color: #2d5016; /* Dark green */
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #e8f5e9; /* Light green */
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+
+        .faq-toggle {
+            color: #27ae60; /* Green */
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        .contact-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #5a6c5d; /* Muted green */
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <section class="contact-section">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>Get in touch with St. Augustine Senior High School. We're here to help and answer any questions you might have.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 class="info-title">Get In Touch</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Our Location</h4>
+                            <p>St. Augustine Senior High School<br>Bogoso, Western Region, Ghana</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone Number</h4>
+                            <p>0244854845</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email Address</h4>
+                            <p>Stagustinesbogoso@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Office Hours</h4>
+                            <p>Monday-Friday: 6:00 AM - 5:30 PM<br>Saturday: 6:00 AM - 5:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="info-title">Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3 class="form-title">Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="your.email@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Message Subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department" class="form-label">Department</label>
+                        <select id="department" class="form-control" required>
+                            <option value="">Select a department</option>
+                            <option value="admissions">Admissions</option>
+                            <option value="academics">Academic Affairs</option>
+                            <option value="student-services">Student Services</option>
+                            <option value="financial-aid">Financial Aid</option>
+                            <option value="housing">Housing</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Your message here..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="map-section">
+            <div class="map-title">Find Us on Campus</div>
+            <div class="map-container">
+                <!-- Embedded Google Map -->
+                <iframe 
+                    class="map-embed"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.258287714675!2d-1.820856685556254!3d5.603845995999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzYnMTMuOCJOIDHCsDQ5JzE1LjAiVw!5e0!3m2!1sen!2sgh!4v1620000000000!5m2!1sen!2sgh" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <div class="map-fallback">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>St. Augustine Senior High School Campus Map</h3>
+                    <p>Interactive map available on our main website</p>
+                    <a href="https://maps.app.goo.gl/k3j7HvhCtZmyVVxJ8" target="_blank" class="submit-btn" style="margin-top: 15px;">
+                        <i class="fas fa-external-link-alt"></i> View on Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    
+    </section>
+
+    <script>
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            
+            // In a real application, you would send this data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message about "${subject}" has been received. We'll respond to ${email} shortly.`);
+            
+            // Reset the form
+            this.reset();
+        });
+        
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        // Add some interactive elements to the map section
+        const mapContainer = document.querySelector('.map-container');
+        mapContainer.addEventListener('click', () => {
+            // In a real application, this would redirect to the map page
+        });
+    </script>
+</body>
+</html>

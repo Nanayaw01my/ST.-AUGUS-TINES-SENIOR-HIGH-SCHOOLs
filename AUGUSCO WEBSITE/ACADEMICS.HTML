@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Augustine Senior High School - Academic Programs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-green: #2E8B57;
+            --dark-green: #1d5c3a;
+            --light-green: #e0f2e9;
+            --primary-yellow: #FFD700;
+            --light-yellow: #fff9e6;
+            --dark-gray: #333;
+            --light-gray: #f4f4f4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: var(--dark-green);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Academic Programs Section Styles */
+        .academic-programs {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .school-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .school-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .school-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #2e7d32;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.2);
+        }
+
+        .card-header {
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            min-height: 100px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+        }
+
+        .card-header i {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            opacity: 0.9;
+            color: #ffeb3b;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .hod-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            background: #f9fbe7;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffeb3b;
+        }
+
+        .hod-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid #ffeb3b;
+            flex-shrink: 0;
+        }
+
+        .hod-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hod-details h4 {
+            color: #2e7d32;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .hod-title {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .hod-contact {
+            color: #2e7d32;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .hod-contact i {
+            margin-right: 5px;
+            color: #ffeb3b;
+        }
+
+        .program-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .program-features li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+        .program-features li:last-child {
+            border-bottom: none;
+        }
+
+        .program-features li i {
+            color: #2e7d32;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            background: #e8f5e9;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .view-details {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #2e7d32, #4caf50);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46, 125, 50, 0.4);
+        }
+
+        .btn i {
+            margin-left: 5px;
+        }
+
+        /* School badge styling */
+        .school-badge {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2e7d32, #ffeb3b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 4px solid white;
+        }
+
+        /* Footer styling */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #2e7d32;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .programs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .school-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .hod-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hod-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            nav.show {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://myriaddigitalsolutions.com/seniorhighub/Misc/Western/St%20Augustine%20Bogoso.png" alt="School Logo">
+                <h1>St. Augustine Senior High School</h1>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="A.HTML" class="active">Home</a></li>
+                    <li><a href="ABOUT.HTML">About Us</a></li>
+                   
+                    <li><a href="ACADEMICS.HTML">Academics</a></li>
+                    <li><a href="CAMPUS LIFE.HTML">Campus Life</a></li>
+                    <li><a href="CONTACT.HTML">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics - St. Augustine Senior High School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-green: #2E8B57;
+            --dark-green: #1d5c3a;
+            --light-green: #e0f2e9;
+            --primary-yellow: #FFD700;
+            --light-yellow: #fff9e6;
+            --dark-gray: #333;
+            --light-gray: #f4f4f4;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .academics-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #5a6c5d;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        /* Program Categories */
+        .program-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: 2px solid var(--primary-green);
+            border-radius: 50px;
+            color: var(--primary-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        /* Programs Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-icon {
+            height: 120px;
+            background-color: var(--light-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 3rem;
+        }
+
+        .program-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .program-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .program-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .program-features li i {
+            color: var(--primary-yellow);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .program-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+        }
+
+        .program-btn:hover {
+            background-color: var(--dark-green);
+        }
+
+        /* Academic Resources */
+        .academic-resources {
+            margin-top: 70px;
+            background-color: var(--light-yellow);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .resources-title {
+            color: var(--primary-green);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .resource-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .resource-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .resource-item h4 {
+            color: var(--dark-green);
+            margin-bottom: 10px;
+        }
+
+        .resource-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-green);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            margin-top: 70px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .academics-section {
+                padding: 40px 15px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .program-categories {
+                gap: 10px;
+            }
+
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .academic-resources {
+                padding: 30px 20px;
+                margin-top: 50px;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                margin-top: 50px;
+            }
+
+            .stat-item {
+                padding: 20px 15px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .program-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="academics-section">
+        <div class="section-header">
+            <h2>Our Academic Programs</h2>
+            <p>St. Augustine Senior High School offers a diverse range of programs designed to prepare students for higher education and successful careers.</p>
+        </div>
+
+        <div class="program-categories">
+            <button class="category-btn active" data-category="all">All Programs</button>
+            <button class="category-btn" data-category="science">Science</button>
+            <button class="category-btn" data-category="business">Business</button>
+            <button class="category-btn" data-category="arts">Arts</button>
+            <button class="category-btn" data-category="vocational">Vocational</button>
+        </div>
+
+        <div class="programs-grid">
+            <!-- General Science Program -->
+            <div class="program-card" data-category="science">
+                <div class="program-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="program-content">
+                    <h3>General Science</h3>
+                    <p>Our General Science program provides a strong foundation in physics, chemistry, biology, and mathematics, preparing students for careers in medicine, engineering, and research.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Advanced laboratory facilities</li>
+                        <li><i class="fas fa-check"></i> Science and math competitions</li>
+                        <li><i class="fas fa-check"></i> Research projects</li>
+                        <li><i class="fas fa-check"></i> University preparation</li>
+                    </ul>
+                    <a href="#" class="program-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Business Program -->
+            <div class="program-card" data-category="business">
+                <div class="program-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="program-content">
+                    <h3>Business</h3>
+                    <p>Our Business program equips students with essential skills in accounting, economics, and entrepreneurship, preparing them for careers in business management and finance.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Entrepreneurship projects</li>
+                        <li><i class="fas fa-check"></i> Financial literacy training</li>
+                        <li><i class="fas fa-check"></i> Business competitions</li>
+                        <li><i class="fas fa-check"></i> Internship opportunities</li>
+                    </ul>
+                    <a href="#" class="program-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- General Arts Program -->
+            <div class="program-card" data-category="arts">
+                <div class="program-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="program-content">
+                    <h3>General Arts</h3>
+                    <p>Our General Arts program offers a diverse curriculum including literature, history, geography, and government, preparing students for careers in law, education, and public service.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Creative writing workshops</li>
+                        <li><i class="fas fa-check"></i> Debate and public speaking</li>
+                        <li><i class="fas fa-check"></i> Cultural studies</li>
+                        <li><i class="fas fa-check"></i> Research and analysis skills</li>
+                    </ul>
+                    <a href="#" class="program-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Home Economics Program -->
+            <div class="program-card" data-category="vocational">
+                <div class="program-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="program-content">
+                    <h3>Home Economics</h3>
+                    <p>Our Home Economics program focuses on food and nutrition, clothing and textiles, and management, preparing students for careers in hospitality, fashion, and family studies.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Modern kitchen facilities</li>
+                        <li><i class="fas fa-check"></i> Fashion design projects</li>
+                        <li><i class="fas fa-check"></i> Nutrition education</li>
+                        <li><i class="fas fa-check"></i> Hospitality training</li>
+                    </ul>
+                    <a href="#" class="program-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Visual Arts Program -->
+            <div class="program-card" data-category="arts">
+                <div class="program-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="program-content">
+                    <h3>Visual Arts</h3>
+                    <p>Our Visual Arts program nurtures creativity through drawing, painting, sculpture, and graphic design, preparing students for careers in fine arts, design, and multimedia.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Studio art facilities</li>
+                        <li><i class="fas fa-check"></i> Art exhibitions</li>
+                        <li><i class="fas fa-check"></i> Digital art training</li>
+                        <li><i class="fas fa-check"></i> Portfolio development</li>
+                    </ul>
+                    <a href="#" class="program-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Agricultural Science Program -->
+            <div class="program-card" data-category="science">
+                <div class="program-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="program-content">
+                    <h3>Agricultural Science</h3>
+                    <p>Our Agricultural Science program combines theory with practical farming skills, preparing students for careers in agribusiness, environmental science, and food production.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> School farm</li>
+                        <li><i class="fas fa-check"></i> Agribusiness projects</li>
+                        <li><i class="fas fa-check"></i> Environmental studies</li>
+                        <li><i class="fas fa-check"></i> Modern farming techniques</li>
+                    </ul>
+                    <a href="#" class="program-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Resources -->
+        <div class="academic-resources">
+            <h3 class="resources-title">Academic Resources</h3>
+            <div class="resources-grid">
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h4>Library Resources</h4>
+                    <p>Access our extensive collection of books, journals, and digital resources.</p>
+                    <a href="#" class="resource-link">Explore Library <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h4>E-Learning Portal</h4>
+                    <p>Access course materials, assignments, and online resources anytime.</p>
+                    <a href="#" class="resource-link">Visit Portal <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h4>Academic Counseling</h4>
+                    <p>Get guidance on course selection, career paths, and university applications.</p>
+                    <a href="#" class="resource-link">Schedule Appointment <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Graduation Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Academic Programs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Qualified Teachers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">University Acceptance</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Program filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const programCards = document.querySelectorAll('.program-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show/hide programs based on category
+                    programCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Animate statistics when they come into view
+            const statItems = document.querySelectorAll('.stat-item');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target.querySelector('.stat-number');
+                        const targetValue = parseInt(statNumber.textContent);
+                        let currentValue = 0;
+                        const increment = targetValue / 50;
+                        
+                        const timer = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= targetValue) {
+                                statNumber.textContent = targetValue + (targetValue === 6 ? '' : (targetValue === 50 ? '+' : '%'));
+                                clearInterval(timer);
+                            } else {
+                                statNumber.textContent = Math.floor(currentValue) + (targetValue === 6 ? '' : (targetValue === 50 ? '+' : '%'));
+                            }
+                        }, 30);
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            statItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
